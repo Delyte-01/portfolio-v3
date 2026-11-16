@@ -1,0 +1,1229 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* V3 type + colour utilities (bg-ivory, text-pink, font-serif …) */
+  --font-serif: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-light: var(--surface-light);
+  --color-electric: var(--electric);
+  --color-violet-deep: var(--violet-deep);
+  --color-pink: var(--pink);
+  --color-sun: var(--sun);
+  --color-mint: var(--mint);
+  --color-sky: var(--sky);
+  --color-pink-ink: var(--pink-text);
+  --color-sun-ink: var(--sun-text);
+  --color-mint-ink: var(--mint-text);
+  --color-sky-ink: var(--sky-text);
+  --color-muted-ink: var(--muted-ink-text);
+  --color-electric-ink: var(--electric-text);
+  --color-hairline: var(--hairline);
+  --ease-atelier: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  /* ── White + signal-orange palette ───────────────────────────────
+     Pure white canvas, near-black ink, one orange (sampled from the
+     reference design). Legacy token names are kept so every existing
+     utility (bg-electric, text-pink-ink …) keeps working, but they all
+     resolve to this single orange family now. */
+  --ivory: #FFFFFF;
+  --ink: #0A0A0A;
+  --charcoal: #D72B0C;        /* "dark" sections are now solid orange */
+  --surface-dark: #B92309;    /* deeper orange for cards on orange */
+  --surface-light: #FFFFFF;
+
+  --electric: #D72B0C;        /* primary · signal orange */
+  --violet-deep: #A81F08;
+  --pink: #D72B0C;
+  --sun: #FF6A3D;
+  --mint: #D72B0C;
+  --sky: #FF6A3D;
+
+  --muted-ink: #6F6F6F;       /* decorative / large text */
+  --muted-ink-text: #5C5C5C;  /* AA-safe for small text on white */
+  --electric-text: #C42609;
+  --pink-text: #C42609;
+  --sun-text: #C42609;
+  --mint-text: #C42609;
+  --sky-text: #C42609;
+  --hairline: #E8E8E8;
+  --cta-hover: var(--electric);
+
+  --background: var(--ivory);
+  --foreground: var(--ink);
+  --card: var(--surface-light);
+  --card-foreground: var(--ink);
+  --popover: var(--surface-light);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--electric);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--hairline);
+  --secondary-foreground: var(--ink);
+  --muted: #F6F6F6;
+  --muted-foreground: var(--muted-ink-text);
+  --accent: color-mix(in srgb, var(--electric) 10%, transparent);
+  --accent-foreground: var(--electric);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--electric);
+
+  --chart-1: var(--electric);
+  --chart-2: var(--ink);
+  --chart-3: var(--sun);
+  --chart-4: #9A9A9A;
+  --chart-5: #D9D9D9;
+
+  --radius: 0.25rem; /* restrained corners */
+
+  --sidebar: var(--ivory);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--electric);
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--electric);
+
+  /* Spacing rhythm (8pt base) */
+  --space-section: clamp(5rem, 10vw, 8.5rem);
+  --space-gutter: clamp(1.25rem, 4vw, 5rem);
+  --measure: 62ch;
+
+  /* Motion */
+  --ease-atelier: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Orange sections: apply .theme-dark to any wrapper to flip tokens locally.
+   Everything that was an accent colour becomes white on orange. */
+.theme-dark {
+  --background: var(--charcoal);
+  --foreground: #FFFFFF;
+  --card: var(--surface-dark);
+  --card-foreground: #FFFFFF;
+  --muted: var(--surface-dark);
+  --muted-foreground: #FFF4F0;
+  --muted-ink-text: #FFF4F0;
+  --electric: #FFFFFF;
+  --pink: #FFFFFF;
+  --sun: #FFFFFF;
+  --mint: #FFFFFF;
+  --sky: #FFFFFF;
+  --electric-text: #FFFFFF;
+  --pink-text: #FFFFFF;
+  --sun-text: #FFFFFF;
+  --mint-text: #FFFFFF;
+  --sky-text: #FFFFFF;
+  --cta-hover: #0A0A0A;
+  --border: rgb(255 255 255 / 0.28);
+  --input: rgb(255 255 255 / 0.32);
+  /* Not a flat swatch: a deeper orange base, a warm highlight (soft-light) and a burnt-sienna
+     shadow (multiply) blended together, so the section reads rich instead of glaring.
+     Highlights stay faint on purpose to keep white text above AA contrast. */
+  background-color: var(--charcoal);
+  background-image:
+    radial-gradient(56rem 34rem at 104% -8%, rgb(255 150 110 / 0.34), transparent 62%),
+    radial-gradient(52rem 40rem at -8% 108%, rgb(96 12 0 / 0.55), transparent 64%),
+    linear-gradient(168deg, #CB2A0B 0%, #BA2509 52%, #A41E07 100%);
+  background-blend-mode: soft-light, multiply, normal;
+  color: #FFFFFF;
+}
+/* Film grain over the blended orange (mix-blend soft-light) takes the digital edge off it. */
+.section-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -15;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Black sections: used for Contact + Footer. Orange stays the accent. */
+.theme-ink {
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --card: #161616;
+  --card-foreground: #FFFFFF;
+  --muted: #161616;
+  --muted-foreground: #B9B9B9;
+  --muted-ink-text: #B9B9B9;
+  --electric-text: #FF6A45;
+  --pink-text: #FF6A45;
+  --sun-text: #FF6A45;
+  --mint-text: #FF6A45;
+  --sky-text: #FF6A45;
+  --cta-hover: #D72B0C;
+  --border: rgb(255 255 255 / 0.14);
+  --input: rgb(255 255 255 / 0.2);
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+}
+.theme-ink .accent-text {
+  color: #FF6A45;
+}
+/* Orange sections: focus ring and text selection must stay visible. */
+.theme-dark :focus-visible {
+  outline-color: #FFFFFF;
+}
+.theme-dark ::selection {
+  background: #FFFFFF;
+  color: #D72B0C;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50 ;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    line-height: 1.6;
+  }
+  ::selection {
+    background: #D72B0C;
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid #D72B0C;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+
+@keyframes scroll-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+.animate-scroll-line {
+  animation: scroll-line 2s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+
+.ease-expo {
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+
+
+
+/* Prevent horizontal "jumping" during entrance animations.
+   `clip` (not `hidden`) so body never becomes a scroll container, which
+   would break the sticky section headings and Lenis. */
+html, body {
+  max-width: 100%;
+}
+body {
+  overflow-x: clip;
+}
+
+
+@layer components {
+/* ── Type scale (Montserrat, bold + tight like the reference) ───── */
+.t-display {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5.4vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+.t-headline {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 4vw, 3.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+.t-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.t-body {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.65;
+}
+.t-meta {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Colour utilities ────────────────────────────────────────────── */
+.bg-brand-gradient {
+  background-color: var(--electric);
+}
+/* Headline accent: solid orange (white + underline on orange sections). */
+.accent-text {
+  color: var(--electric);
+}
+.theme-dark .accent-text {
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.14em;
+}
+/* Very soft colour wash (decorative, no filters = cheap to paint). */
+.section-glow {
+  background: radial-gradient(40rem 28rem at 94% 6%, color-mix(in srgb, var(--electric) 7%, transparent), transparent 65%);
+}
+.theme-dark .section-glow {
+  background: radial-gradient(40rem 28rem at 92% 4%, rgb(255 214 196 / 0.12), transparent 65%);
+  mix-blend-mode: soft-light;
+}
+.hero-glow {
+  background:
+    radial-gradient(44rem 34rem at 90% 10%, color-mix(in srgb, var(--electric) 9%, transparent), transparent 62%),
+    radial-gradient(40rem 28rem at 4% 100%, #F6F6F6, transparent 62%);
+}
+
+/* ── Digital-architect detail: faint structural grid ─────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, currentColor 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, currentColor 7%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+}
+
+/* ── Hero grid spotlight (features/hero/hero-fx.tsx writes --sx / --sy) ───────────── */
+.hero-spot {
+  --sx: 50%;
+  --sy: 50%;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--electric) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--electric) 38%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(230px circle at var(--sx) var(--sy), #000, transparent 72%);
+  mask-image: radial-gradient(230px circle at var(--sx) var(--sy), #000, transparent 72%);
+}
+
+/* ── Reduced motion: neutralise CSS animation globally ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Signature details ──────────────────────────────────────────────
+   Scrolling bands, rotating sticker badge and highlighter marker.
+   All motion is CSS-only and is frozen by the reduced-motion rule above. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+.marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
+.marker {
+  background-color: transparent;
+  color: inherit;
+  background-image: linear-gradient(
+    transparent 58%,
+    color-mix(in srgb, #D72B0C 22%, transparent) 58%,
+    color-mix(in srgb, #D72B0C 22%, transparent) 92%,
+    transparent 92%
+  );
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-inline: 0.12em;
+  margin-inline: -0.12em;
+}
+/* GSAP toggles this when a band scrolls out of view (saves paint work). */
+.marquee.is-offscreen .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ── Loading screen (spec: animated.md) ───────────────────────────── */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 300; /* above navbar (100), progress bar (120) and page wipe (200) */
+  display: grid;
+  place-items: center;
+  height: 100svh;
+  background: #fff;
+  color: var(--logo-fill, #d72b0c);
+  clip-path: inset(0% 0% 0% 0%);
+  will-change: clip-path;
+  /* Failsafe: if JS never takes over, the overlay removes itself after 8s. */
+  animation: loader-failsafe 0s linear 8s forwards;
+}
+@keyframes loader-failsafe {
+  to {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+html[data-loader="skip"] .loader {
+  display: none;
+}
+html.is-loading {
+  overflow: hidden;
+  /* Keep the scrollbar's space reserved so content never shifts when the lock is lifted. */
+  scrollbar-gutter: stable;
+}
+.loader__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100vw;
+  padding-inline: 24px;
+}
+.loader__logo {
+  display: block;
+  width: min(72vw, 320px);
+  height: auto;
+  overflow: visible;
+}
+@media (min-width: 768px) {
+  .loader__logo {
+    width: clamp(280px, 30vw, 440px);
+  }
+}
+.loader__tagline {
+  margin-top: 20px;
+  max-width: 34ch;
+  text-align: center;
+  text-wrap: balance;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.6);
+}
+@media (min-width: 768px) {
+  .loader__tagline {
+    font-size: 0.6875rem;
+    max-width: 52ch;
+  }
+}
+.loader__counter-wrap {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 24px;
+  display: flex;
+  justify-content: center;
+  padding-inline: 24px;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .loader__counter-wrap {
+    justify-content: flex-end;
+  }
+}
+.loader__counter {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  color: rgb(10 10 10 / 0.6);
+}
+
+/* ── Logo hover: the 4-fold mark turns 90° and lands on an identical shape ── */
+.logo-icon {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transition: transform 0.9s var(--ease-atelier);
+}
+.logo-link:hover .logo-icon {
+  transform: rotate(90deg);
+}
+
+/* ── Contact card: gradient edge, glow ring, hatched offset card ───────── */
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 2px solid transparent;
+  /* Orange fill + a light-to-deep orange gradient on the border box = a lit edge. */
+  background:
+    linear-gradient(var(--electric), var(--electric)) padding-box,
+    linear-gradient(135deg, #ffd3c2 0%, #ff6a3d 32%, #d72b0c 62%, #ff9a7a 100%) border-box;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2);
+}
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 0% 0%, rgb(255 255 255 / 0.2), transparent 55%);
+}
+.contact-halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  pointer-events: none;
+  /* Soft band + hairline + ambient glow, all outside the card edge. */
+  box-shadow:
+    0 0 0 6px rgb(215 43 12 / 0.14),
+    0 0 0 7px rgb(215 43 12 / 0.38),
+    0 36px 80px -32px rgb(215 43 12 / 0.65);
+}
+.contact-ghost {
+  position: absolute;
+  inset: 12px 12px -12px 12px;
+  border-radius: 1.5rem;
+  border: 1.5px solid rgb(215 43 12 / 0.55);
+  background: repeating-linear-gradient(135deg, rgb(215 43 12 / 0.1) 0 2px, transparent 2px 9px);
+  pointer-events: none;
+}
+.contact-sheen {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 45%;
+  pointer-events: none;
+  opacity: 0; /* GSAP sweeps it across; stays invisible without JS */
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.2), transparent);
+}
+@media (min-width: 1024px) {
+  .contact-halo {
+    box-shadow:
+      0 0 0 8px rgb(215 43 12 / 0.14),
+      0 0 0 9px rgb(215 43 12 / 0.4),
+      0 40px 90px -30px rgb(215 43 12 / 0.65);
+  }
+  .contact-ghost {
+    inset: 14px -14px -14px 14px;
+  }
+}
+
+/* ── Hero stage (spec: hero-animation.md + hero-v2.md) ─────────────────────────────
+   A fixed 640 x 520 design box, scaled by --s (written by one ResizeObserver in hero-stage.tsx).
+   Every number below is a design pixel inside that box. The markup is the FINISHED frame, so
+   no-JS and reduced-motion visitors see a complete picture; GSAP applies the hidden start state. */
+.hs {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 640 / 520; /* reserves the space before JS runs: no layout shift */
+  pointer-events: none;
+  user-select: none;
+}
+.hs__inner {
+  --s: 0.55; /* first-paint guess; the ResizeObserver replaces it with the exact value */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 640px;
+  height: 520px;
+  transform-origin: 0 0;
+  transform: scale(var(--s));
+  font-family: var(--font-sans);
+  color: #0a0a0a;
+}
+@media (min-width: 1024px) {
+  .hs__inner {
+    --s: 0.78;
+  }
+}
+.hs__win {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+}
+.hs__win > * {
+  position: absolute;
+  box-sizing: border-box;
+}
+.hs__frame {
+  left: 16px;
+  top: 16px;
+  width: 608px;
+  height: 488px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgb(10 10 10 / 0.12);
+  box-shadow: 0 44px 80px -28px rgb(10 10 10 / 0.24), 0 12px 28px -12px rgb(10 10 10 / 0.1), 0 2px 4px rgb(10 10 10 / 0.04);
+}
+@media (max-width: 767px) {
+  .hs__frame {
+    box-shadow: 0 16px 32px -16px rgb(10 10 10 / 0.16);
+  }
+}
+/* Browser chrome: tab strip (y 16-50), toolbar (y 50-84), rule at 84. Everything below is the page layer. */
+.hs__strip {
+  left: 16px;
+  top: 16px;
+  width: 608px;
+  height: 34px;
+  border-radius: 16px 16px 0 0;
+  background: #e9ebee;
+  border: 1px solid rgb(10 10 10 / 0.12);
+  border-bottom: 0;
+}
+.hs__tab {
+  top: 22px;
+  height: 28px;
+  width: 158px;
+}
+.hs__tab1 {
+  left: 28px;
+}
+.hs__tab2 {
+  left: 176px;
+  opacity: 0; /* finished frame: one tab only */
+  visibility: hidden;
+}
+.hs__tab > *,
+.hs__tabc > * {
+  position: absolute;
+}
+.hs__tabc {
+  left: 0;
+  top: 0;
+  width: 158px;
+  height: 28px;
+}
+.hs__tabshape {
+  left: 0;
+  top: 0;
+  display: block;
+}
+.hs__tabshape path {
+  fill: #fff;
+}
+.hs__fav {
+  left: 18px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff6a3d;
+}
+.hs__fav--ring {
+  background: transparent;
+  border: 2px solid #ff6a3d;
+  border-top-color: transparent;
+  box-sizing: border-box;
+}
+.hs__tab2[data-ready] .hs__fav--ring {
+  background: #ff6a3d;
+  border-color: #ff6a3d;
+}
+.hs__tabtitle {
+  left: 36px;
+  top: 0;
+  width: 84px;
+  font-size: 11px;
+  line-height: 28px;
+  color: rgb(10 10 10 / 0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hs__x {
+  left: 130px;
+  top: 9px;
+}
+.hs__plus {
+  left: 196px;
+  top: 26px;
+  width: 20px;
+  height: 20px;
+  color: rgb(10 10 10 / 0.55);
+}
+.hs__nb {
+  top: 55px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+}
+.hs__nb svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: rgb(10 10 10 / 0.58);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hs__nb--dim svg {
+  opacity: 0.4;
+}
+.hs__addr {
+  left: 124px;
+  top: 55px;
+  width: 432px;
+  height: 24px;
+  border-radius: 12px;
+  background: #f1f3f4;
+  overflow: hidden;
+}
+.hs__lock {
+  position: absolute;
+  left: 11px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+}
+.hs__addrtext {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  font-size: 11px;
+  line-height: 24px;
+  color: rgb(10 10 10 / 0.75);
+  white-space: nowrap;
+}
+.hs__me {
+  left: 576px;
+  top: 57px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffe3d9;
+  box-shadow: inset 0 0 0 6px #ffe3d9, inset 0 0 0 20px #ff6a3d;
+}
+.hs__load {
+  left: 16px;
+  top: 83px;
+  width: 608px;
+  height: 2px;
+  background: #d72b0c;
+  transform-origin: 0 50%;
+  opacity: 0;
+  visibility: hidden;
+}
+/* Page layer and overlay layer: same origin, one constant (24 px) below the old window coordinates. */
+.hs__page,
+.hs__over {
+  left: 0;
+  top: 24px;
+  width: 640px;
+  height: 496px;
+}
+.hs__page > *,
+.hs__over > * {
+  position: absolute;
+  box-sizing: border-box;
+}
+/* Act 2 page (the screenshot <img> is added in JS on desktop only). */
+.hs__view {
+  left: 16px;
+  top: 85px;
+  width: 608px;
+  height: 419px;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+  background: #f4f4f5;
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__cap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: rgb(10 10 10 / 0.22);
+}
+.hs__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  max-width: none;
+  visibility: hidden;
+  will-change: transform;
+}
+.hs__rule {
+  left: 16px;
+  width: 608px;
+  height: 1px;
+  background: rgb(10 10 10 / 0.12);
+}
+.hs__hair {
+  top: 112px;
+  transform-origin: 0 50%;
+}
+.hs__gridclip {
+  left: 16px;
+  top: 112px;
+  width: 608px;
+  height: 368px;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}
+.hs__grid {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 672px;
+  height: 520px;
+  background-image: radial-gradient(circle at 1px 1px, rgb(10 10 10 / 0.1) 1px, transparent 1.4px);
+  background-size: 16px 16px;
+}
+/* Logo icon layer: stage A is the centre; the finished frame is the nav slot (top-left 44,72 at 30 px). */
+.hs__icon {
+  left: 225px;
+  top: 205px;
+  width: 190px;
+  height: 190px;
+  transform-origin: 0 0;
+  transform: translate(-181px, -133px) scale(0.158);
+}
+.hs__iconrot {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+}
+.hs__iconrot svg,
+.hs__word svg {
+  display: block;
+  overflow: hidden;
+}
+.hs__iconrot svg {
+  overflow: visible;
+}
+.hs__icon [data-s="stem"] {
+  opacity: 0;
+}
+.hs__word {
+  left: 82px;
+  top: 76px;
+  width: 65px;
+  height: 22px;
+  overflow: hidden;
+}
+.hs__link {
+  top: 84px;
+  width: 36px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgb(10 10 10 / 0.12);
+  transform-origin: 0 50%;
+}
+.hs__cta {
+  left: 520px;
+  top: 74px;
+  width: 80px;
+  height: 26px;
+  border-radius: 13px;
+  background: #0a0a0a;
+}
+/* Card: border + clip on the face, the shadow lives on its own layer (clip-path would cut it off). */
+.hs__card {
+  left: 88px;
+  top: 150px;
+  width: 464px;
+  height: 290px;
+  border-radius: 14px;
+}
+.hs__cardshadow {
+  box-shadow: 0 18px 36px -16px rgb(10 10 10 / 0.16), 0 4px 10px -4px rgb(10 10 10 / 0.06);
+}
+.hs__cardface {
+  background: #fff;
+  border: 1px solid rgb(10 10 10 / 0.12);
+}
+.hs__cardface > * {
+  position: absolute;
+  box-sizing: border-box;
+}
+.hs__mask {
+  left: 28px;
+  width: 400px;
+  height: 31px;
+  overflow: hidden;
+}
+.hs__h {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 31px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: #0a0a0a;
+}
+.hs__bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgb(10 10 10 / 0.12);
+  transform-origin: 0 50%;
+}
+.hs__image {
+  left: 304px;
+  top: 28px;
+  width: 132px;
+  height: 132px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff6a3d, #d72b0c);
+}
+.hs__avatar {
+  left: 304px;
+  top: 180px;
+  width: 132px;
+  height: 28px;
+}
+.hs__avatar-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgb(10 10 10 / 0.12);
+}
+.hs__avatar-bar {
+  position: absolute;
+  left: 38px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgb(10 10 10 / 0.12);
+}
+.hs__btn {
+  left: 28px;
+  top: 222px;
+  width: 128px;
+  height: 40px;
+  border-radius: 20px;
+}
+.hs__btnshadow {
+  box-shadow: 0 12px 20px -8px rgb(215 43 12 / 0.55);
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__btnface {
+  background: #d72b0c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: center;
+  white-space: nowrap;
+}
+.hs__chip {
+  left: 172px;
+  top: 230px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgb(215 43 12 / 0.08);
+  color: #d72b0c;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0; /* finished frame: hidden */
+  visibility: hidden;
+}
+.hs__chip--static {
+  position: static;
+  display: inline-block;
+  opacity: 1;
+  visibility: inherit;
+}
+/* Annotation chips (hidden in the finished frame). */
+.hs__spacing {
+  left: 270px;
+  top: 112px;
+  width: 100px;
+  height: 38px;
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__spacing .hs__tick {
+  position: absolute;
+  left: 46px;
+  width: 8px;
+  height: 1px;
+  background: #0a0a0a;
+}
+.hs__spacing .hs__tickline {
+  position: absolute;
+  left: 50px;
+  top: 0;
+  width: 1px;
+  height: 38px;
+  background: #0a0a0a;
+}
+.hs__pill {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.hs__mirror {
+  left: 240px;
+  top: 158px;
+  width: 160px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__handle {
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border: 1px solid #0a0a0a;
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__ripple {
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #d72b0c;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__cursor {
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+  opacity: 0;
+  visibility: hidden;
+}
+.hs__cursor svg {
+  display: block;
+}
+.hs__tag {
+  position: absolute;
+  left: 14px;
+  top: 16px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #d72b0c;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ── Desktop micro-interactions (spec: gsap-animation.md) ─────────────────────────────
+   Everything below either is invisible by default or only applies inside the same media query
+   the GSAP layer uses (components/motion/desktop-motion.tsx, lib/motion.ts DESKTOP_FINE), so
+   phones, tablets, touch laptops and reduced-motion visitors keep exactly the current look.
+   These rules are deliberately unlayered: they must beat Tailwind's layered utilities. */
+
+/* SplitText pieces must be inline-block to move (F3 title wave, F15 email flip). Words keep the
+   original line breaks. */
+.split-word,
+.split-char {
+  display: inline-block;
+}
+
+/* F14: soft highlight that follows the pointer inside the contact card. */
+.contact-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.2), transparent 60%);
+  mix-blend-mode: soft-light;
+}
+
+/* F15: the email underline is a background line, because text-decoration does not reach the
+   inline-block letters SplitText creates. Registered as a colour so the hover change still fades. */
+@property --ul {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(255 255 255 / 0.6);
+}
+
+@media (min-width: 1024px) {
+  .email-link {
+    --ul: rgb(255 255 255 / 0.6);
+    width: fit-content;
+    text-decoration: none;
+    padding-bottom: 0.25em;
+    background-image: linear-gradient(var(--ul), var(--ul));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 2px;
+    transition:
+      color 0.3s,
+      --ul 0.3s;
+  }
+  .email-link:hover {
+    --ul: #fff;
+  }
+}
+
+/* F11: hidden everywhere except inside the desktop media query below. */
+.timeline-line {
+  display: none;
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* F1: the custom cursor shows "View" here instead of the CSS sticker. */
+  .view-sticker {
+    display: none;
+  }
+
+  /* F9: GSAP jiggles the badge; the CSS hover turn would stack with it. */
+  .skill-badge {
+    transition: none;
+    rotate: none;
+    scale: none;
+  }
+
+  /* F11: the timeline line starts undrawn; GSAP scrubs it with the scroll. */
+  .timeline-line {
+    display: block;
+    transform: scaleY(0);
+  }
+
+  /* F18: GSAP turns the footer icon toward the pointer; no CSS turn or transition on top of it. */
+  [data-footer-logo] .logo-icon {
+    transition: none;
+  }
+  [data-footer-logo].logo-link:hover .logo-icon {
+    transform: none;
+  }
+}
+
+/* ── 3D hero mark (spec: 3d-model-animation.md section 5) ─────────────────────────────
+   A reserved square at the top right of the hero stage, overlapping the browser frame. Hidden below
+   1024 px (phones and small tablets render nothing). From 1024 px up it always exists: the poster
+   (flat icon) is what no-JS, reduced-motion, touch and low-power visitors see; the live canvas fades in
+   over it on capable desktops. */
+.hero-mark {
+  position: absolute;
+  top: -2.5rem;
+  right: -1.5rem;
+  z-index: 10;
+  display: none;
+  width: clamp(40px, 8vw, 100px);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .hero-mark {
+    display: block;
+  }
+}
+.hero-mark__poster,
+.hero-mark__canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* The poster is drawn at the same size the 3D mark has at rest (about 64 % of the slot), so the
+   crossfade does not make the logo jump. */
+.hero-mark__poster {
+  inset: 18%;
+  filter: drop-shadow(0 18px 24px rgb(215 43 12 / 0.25));
+}
+/* Hidden until GSAP crossfades it in over the poster. */
+.hero-mark__canvas {
+  opacity: 0;
+  visibility: hidden;
+}
