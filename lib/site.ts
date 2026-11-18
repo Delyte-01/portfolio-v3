@@ -17,9 +17,10 @@ export const site = {
   email: "madunecheezechukwu@gmail.com",
   whatsapp: {
     number: "2348139760048",
-    message: "Hi Delyte, I saw your portfolio and I'd like to talk about a project.",
+    message:
+      "Hi Delyte, I saw your portfolio and I'd like to talk about a project.",
   },
-  cv: "/maduneche_samuel_CV.pdf",
+  cv: "/Maduneche_Samuel_Ezechukwu_CV.pdf",
   socials: {
     github: "https://github.com/Delyte-01",
     linkedin: "https://www.linkedin.com/in/sammy-delyte-0a1224302",

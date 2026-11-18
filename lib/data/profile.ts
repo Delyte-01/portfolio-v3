@@ -42,8 +42,8 @@ export const experience: readonly ExperienceItem[] = [
   {
     role: "Lead Frontend Developer",
     org: "LiteUpper",
-    period: "Nov 2025 — Present",
-    current: true,
+    period: "Nov 2025 — Jun 2026",
+    current: false,
     points: [
       "Architecting the frontend of a school management system from scratch with Next.js and TypeScript.",
       "Working with a backend developer on API schemas for student records, grading and admin dashboards.",
@@ -53,8 +53,8 @@ export const experience: readonly ExperienceItem[] = [
   {
     role: "Frontend Developer",
     org: "Daowakanda (Web3 / DAO platform)",
-    period: "Jan 2025 — Present",
-    current: true,
+    period: "Jan 2025 — March 2026",
+    current: false,
     points: [
       "Building a high-performance interface for blockchain interactions and DAO governance with Next.js, React and Tailwind CSS.",
       "Optimising the application for mobile responsiveness.",
